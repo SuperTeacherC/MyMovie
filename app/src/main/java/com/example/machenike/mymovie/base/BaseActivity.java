@@ -1,14 +1,14 @@
 package com.example.machenike.mymovie.base;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import butterknife.ButterKnife;
 
 /**
  * Created by Machenike on 2016/11/29.
  */
-public abstract class BaseActivity extends Activity
+public abstract class BaseActivity extends FragmentActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,6 @@ public abstract class BaseActivity extends Activity
         ButterKnife.bind(this);
 
         initData();
-        initListener();
 
     }
 
