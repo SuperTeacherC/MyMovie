@@ -9,7 +9,6 @@ import com.example.machenike.mymovie.base.BaseFragment;
 import com.example.machenike.mymovie.bean.HotBean;
 import com.example.machenike.mymovie.utils.Constant;
 import com.google.gson.Gson;
-import com.youth.banner.Banner;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -24,8 +23,8 @@ import okhttp3.Call;
 public class HotFragment extends BaseFragment {
 
 
-    @Bind(R.id.bannerTitle)
-    Banner bannerTitle;
+//    @Bind(R.id.bannerTitle)
+//    Banner bannerTitle;
     @Bind(R.id.lv_hot)
     ListView lvHot;
     private List<HotBean.DataBean.MoviesBean> movies;
@@ -35,8 +34,6 @@ public class HotFragment extends BaseFragment {
     @Override
     protected void initData() {
         getDataformNet();
-
-        lvHot.setAdapter(new HotAdapter(mContext,movies));
     }
 
     private void getDataformNet() {
@@ -48,10 +45,11 @@ public class HotFragment extends BaseFragment {
                     public void onError(Call call, Exception e, int id) {
                         Log.e("TAG", "联网失败" + e);
                     }
-
                     @Override
                     public void onResponse(String response, int id) {
+                        Log.e("TAG",response.toString());
                         processData(response);
+                        lvHot.setAdapter(new HotAdapter(getContext(), movies));
                     }
                 });
     }

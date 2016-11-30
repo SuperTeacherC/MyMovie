@@ -69,7 +69,7 @@ public class MovieFragment extends BaseFragment {
             }
 
         });
-        viewpager.setCurrentItem(1);
+        viewpager.setCurrentItem(0);
     }
 
     private void initFragment() {

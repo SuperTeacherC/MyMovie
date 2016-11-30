@@ -13,10 +13,11 @@
 
         <TextView
             android:id="@+id/tv_city"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:drawableRight="@drawable/show_city01"
+            android:drawableRight="@drawable/show_city"
             android:text="北京 "
             android:textColor="@android:color/white"
             android:textSize="15sp" />
@@ -49,7 +50,7 @@
             android:id="@+id/tv_search"
             android:layout_width="210dp"
             android:layout_height="match_parent"
-            android:drawableLeft="@drawable/ic_sousuokuang_press"
+            android:drawableLeft="@drawable/sousuo"
             android:hint="找影视剧，影人，影院"
             android:paddingLeft="6sp"
             android:textSize="16sp" />
