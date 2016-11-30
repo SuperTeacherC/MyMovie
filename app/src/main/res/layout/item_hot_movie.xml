@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_hot_movies"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_margin="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/xiaofei" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_hot_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电影名称"
+            android:textSize="20sp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ru"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="5dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rv"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="5dp"
+                android:visibility="gone"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rw"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="5dp"
+                android:visibility="gone"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_hot_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="观众 "
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_hot_user_fen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9.0 "
+                android:textColor="#ffcc00"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_hot_vip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="| 专业 "
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_hot_vip_fen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9.0"
+                android:textColor="#ffcc00"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_hot_scm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电影描述"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/tv_hot_showinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="播放场次"
+            android:textSize="15dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_hot_reply"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:background="@drawable/hot_reply_seletor"
+        android:text="购票"
+        android:textColor="@drawable/text_hot_reply_seletor"
+        android:gravity="center"
+        android:layout_marginLeft="70dp"
+        android:visibility="gone"/>
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/hot_yushou_seletor"
+        android:text="预售"
+        android:textColor="@drawable/text_hot_yushou_seletor"
+        android:gravity="center"
+        android:layout_marginLeft="70dp"/>
+</LinearLayout>

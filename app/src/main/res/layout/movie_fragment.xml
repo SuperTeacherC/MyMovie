@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:t1="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,9 +12,10 @@
         android:background="#bb0000">
 
         <TextView
+            android:id="@+id/tv_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="20dp"
             android:drawableRight="@drawable/show_city01"
             android:text="北京 "
             android:textColor="@android:color/white"
@@ -21,35 +23,42 @@
 
         <com.flyco.tablayout.SegmentTabLayout
             android:id="@+id/tl_1"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/tv_city"
+            android:layout_marginTop="15dp"
             tl:tl_bar_color="#ffffff"
-            tl:tl_indicator_color="#ed3f3f"
-            tl:tl_indicator_corner_radius="15dp"
-            tl:tl_tab_padding="23dp" />
-
-        <TextView
-            android:id="@+id/tv_search"
+            tl:tl_indicator_color="#bb0000"
+            tl:tl_indicator_corner_radius="5dp"
+            tl:tl_tab_padding="23dp"
+            t1:tl_divider_width="0dp"
+            t1:tl_textSelectColor="#f00"
+            t1:tl_textUnselectColor="#fff"
+            />
+        <LinearLayout
             android:layout_width="350dp"
-            android:layout_height="35dp"
+            android:layout_height="25dp"
             android:layout_below="@id/tl_1"
+            android:layout_marginTop="18dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/cinema_comment_seekbar_bg"
-            android:drawableLeft="@drawable/icon_search_white"
+            android:background="@drawable/search_shap"
+            android:gravity="center">
+        <TextView
             android:gravity="center"
+            android:id="@+id/tv_search"
+            android:layout_width="210dp"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_sousuokuang_press"
             android:hint="找影视剧，影人，影院"
             android:paddingLeft="6sp"
             android:textSize="16sp" />
-
+        </LinearLayout>
     </RelativeLayout>
 
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="movie" />
+        android:gravity="center" />
 </LinearLayout>

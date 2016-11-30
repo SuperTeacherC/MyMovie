@@ -1,4 +1,4 @@
-package com.example.machenike.mymovie;
+package com.example.machenike.mymovie.bean;
 
 import java.util.List;
 

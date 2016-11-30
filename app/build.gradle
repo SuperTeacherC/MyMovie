@@ -30,4 +30,6 @@ dependencies {
     compile project(':okhttputils')
     compile 'com.google.code.gson:gson:2.2.4'
     compile project(':FlycoTabLayout_Lib')
+    compile project(':banner')
+    compile 'com.android.support:recyclerview-v7:23.4.0'
 }

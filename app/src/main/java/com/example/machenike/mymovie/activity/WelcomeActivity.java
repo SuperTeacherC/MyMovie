@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.machenike.mymovie.R;
-import com.example.machenike.mymovie.SplashBean;
+import com.example.machenike.mymovie.bean.SplashBean;
 import com.example.machenike.mymovie.utils.Constant;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
