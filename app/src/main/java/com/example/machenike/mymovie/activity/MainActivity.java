@@ -1,4 +1,4 @@
-package com.example.machenike.mymovie;
+package com.example.machenike.mymovie.activity;
 
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.machenike.mymovie.R;
 import com.example.machenike.mymovie.base.BaseActivity;
 import com.example.machenike.mymovie.fragment.cinemafragment.CinemaFragment;
 import com.example.machenike.mymovie.fragment.communityfragment.CommunityFragment;
