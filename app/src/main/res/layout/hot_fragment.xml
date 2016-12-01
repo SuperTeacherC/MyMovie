@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
-    <!--<com.youth.banner.Banner-->
-        <!--android:id="@+id/bannertitle"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="80dp"/>-->
+<include layout="@layout/hot_title_search"></include>
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"/>
 
     <ListView
         android:layout_width="wrap_content"

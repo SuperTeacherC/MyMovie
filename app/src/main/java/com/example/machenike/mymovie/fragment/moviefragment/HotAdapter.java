@@ -5,7 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.machenike.mymovie.R;
@@ -45,24 +47,73 @@ public class HotAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder ;
+        ViewHolder holder;
         if (convertView == null) {
             convertView = View.inflate(mContext, R.layout.item_hot_movie, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else{
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         HotBean.DataBean.MoviesBean moviesBean = movies.get(position);
-        
+        if(position == 0) {
+            holder.hotTopone.setVisibility(View.VISIBLE);
+        }else{
+            holder.hotTopone.setVisibility(View.GONE);
+        }
+        holder.hotTopic.setText(moviesBean.getStar());
+        holder.hotInfo.setText(moviesBean.getScm());
         holder.tvHotName.setText(moviesBean.getNm());
         Glide.with(mContext)
                 .load(moviesBean.getImg())
                 .into(holder.ivHotMovies);
         holder.tvHotName.setText(moviesBean.getNm());
-//        holder.tvHotUserFen.setText((int) moviesBean.getSc());
+        holder.tvHotUserFen.setText(moviesBean.getSc() + "");
+        holder.tvHotVipFen.setText(moviesBean.getSn() + "");
         holder.tvHotScm.setText(moviesBean.getScm());
         holder.tvHotShowinfo.setText(moviesBean.getShowInfo());
+        holder.imax3d.setVisibility(moviesBean.isImax() ? View.VISIBLE : View.GONE);
+        holder.hot3d.setVisibility(moviesBean.isValue3d() ? View.VISIBLE : View.GONE);
+        holder.tvHotReply.setVisibility(moviesBean.getPreSale() == 1 ? View.GONE : View.VISIBLE);
+        holder.tvHotYushou.setVisibility(moviesBean.getPreSale() == 0 ? View.GONE : View.VISIBLE);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "详情页面", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.tvHotYushou.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"预售票", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.tvHotReply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"售票", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.ivHotMovies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"宣传片页面", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.hotTopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"专题页面", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.hotInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"资讯页面", Toast.LENGTH_SHORT).show();
+            }
+        });
         return convertView;
     }
 
@@ -71,6 +122,12 @@ public class HotAdapter extends BaseAdapter {
         ImageView ivHotMovies;
         @Bind(R.id.tv_hot_name)
         TextView tvHotName;
+        @Bind(R.id.imax_2d)
+        ImageView imax2d;
+        @Bind(R.id.hot_3d)
+        ImageView hot3d;
+        @Bind(R.id.imax_3d)
+        ImageView imax3d;
         @Bind(R.id.tv_hot_user)
         TextView tvHotUser;
         @Bind(R.id.tv_hot_user_fen)
@@ -83,11 +140,24 @@ public class HotAdapter extends BaseAdapter {
         TextView tvHotScm;
         @Bind(R.id.tv_hot_showinfo)
         TextView tvHotShowinfo;
+        @Bind(R.id.movie_info)
+        LinearLayout movieInfo;
+        @Bind(R.id.hot_item_all)
+        LinearLayout hotItemAll;
         @Bind(R.id.tv_hot_reply)
         TextView tvHotReply;
-
+        @Bind(R.id.tv_hot_yushou)
+        TextView tvHotYushou;
+        @Bind(R.id.hot_topic)
+        TextView hotTopic;
+        @Bind(R.id.hot_info)
+        TextView hotInfo;
+        @Bind(R.id.hot_topone)
+        LinearLayout hotTopone;
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
+
         }
     }
+
 }

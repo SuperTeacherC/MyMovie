@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 <LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -15,12 +18,27 @@
         android:layout_margin="15dp"
         android:scaleType="fitXY"
         android:src="@drawable/xiaofei" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/play"
+        android:layout_alignStart="@id/iv_hot_movies"
+        android:layout_alignTop="@id/iv_hot_movies"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"/>
+    <LinearLayout
+    android:id="@+id/hot_item_all"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_toRightOf="@id/iv_hot_movies">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:orientation="vertical">
+        android:layout_marginTop="22dp"
+        android:orientation="vertical"
+        android:id="@+id/movie_info">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,12 +50,15 @@
             android:text="电影名称"
             android:textSize="20sp" />
             <ImageView
+                android:id="@+id/imax_2d"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ru"
                 android:layout_marginTop="3dp"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:visibility="gone"/>
             <ImageView
+                android:id="@+id/hot_3d"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/rv"
@@ -45,6 +66,7 @@
                 android:layout_marginLeft="5dp"
                 android:visibility="gone"/>
             <ImageView
+                android:id="@+id/imax_3d"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/rw"
@@ -53,7 +75,7 @@
                 android:visibility="gone"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -107,17 +129,14 @@
 
 
 </LinearLayout>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+      android:layout_marginTop="60dp"
         >
-
         <TextView
-
             android:id="@+id/tv_hot_reply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,8 +144,9 @@
             android:text="购票"
             android:textColor="@drawable/text_hot_reply_seletor"
             android:gravity="center"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
         <TextView
+            android:id="@+id/tv_hot_yushou"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/hot_yushou_seletor"
@@ -135,4 +155,77 @@
             android:gravity="center"
             android:visibility="gone"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/hot_topone"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@id/iv_hot_movies"
+       >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eee"
+            android:layout_alignParentBottom="true"/>
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            >
+
+            <TextView
+
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="专题"
+                android:textColor="#ff6600"
+                android:background="@drawable/hot_zixun_shape"/>
+            <TextView
+                android:id="@+id/hot_topic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="宣传语"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eee"
+            android:layout_alignParentBottom="true"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="8dp">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="资讯"
+                android:textColor="#ff6600"
+                android:background="@drawable/hot_zixun_shape"/>
+            <TextView
+                android:id="@+id/hot_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="最新资讯"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eee"
+        android:layout_alignParentBottom="true"/>
+</LinearLayout>

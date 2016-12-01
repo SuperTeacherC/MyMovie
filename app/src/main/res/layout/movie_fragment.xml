@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:background="#bb0000">
 
         <TextView
@@ -37,24 +37,7 @@
             t1:tl_textSelectColor="#f00"
             t1:tl_textUnselectColor="#fff"
             />
-        <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="25dp"
-            android:layout_below="@id/tl_1"
-            android:layout_marginTop="18dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/search_shap"
-            android:gravity="center">
-        <TextView
-            android:gravity="center"
-            android:id="@+id/tv_search"
-            android:layout_width="210dp"
-            android:layout_height="match_parent"
-            android:drawableLeft="@drawable/sousuo"
-            android:hint="找影视剧，影人，影院"
-            android:paddingLeft="6sp"
-            android:textSize="16sp" />
-        </LinearLayout>
+
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

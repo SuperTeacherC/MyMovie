@@ -1,9 +1,13 @@
 package com.example.machenike.mymovie.fragment.moviefragment;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.machenike.mymovie.R;
@@ -15,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by Machenike on 2016/11/30.
@@ -26,8 +31,6 @@ public class MovieFragment extends BaseFragment {
     TextView tvCity;
     @Bind(R.id.tl_1)
     SegmentTabLayout tll;
-    @Bind(R.id.tv_search)
-    TextView tvSearch;
     @Bind(R.id.viewpager)
     ViewPager viewpager;
     private HotFragment hotFragment;
@@ -91,6 +94,20 @@ public class MovieFragment extends BaseFragment {
     @Override
     protected void initView() {
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     private class MyAdapter extends FragmentPagerAdapter {
