@@ -1,11 +1,8 @@
 package com.example.machenike.mymovie.fragment.moviefragment;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 
 /**
@@ -42,20 +38,21 @@ public class HotFragment extends BaseFragment {
     TextView tvSearch;
     @Bind(R.id.hot_search)
     LinearLayout hotSearch;
-    @Bind(R.id.banner)
-    Banner banner;
     @Bind(R.id.lv_hot)
     ListView lvHot;
     private List<HotBean.DataBean.MoviesBean> movies;
     private HotBean hotBean;
     private Context mContext;
-    private List<String> imagesUrl;
+    public List<String> imagesUrl;
+    private Banner banner;
 
     @Override
     protected void initData() {
+       View headview = View.inflate(getContext(), R.layout.hot_headview, null);
+       banner = (Banner) headview.findViewById(R.id.banner);
+        lvHot.addHeaderView(headview);
         getDataformNet();
         initListener();
-
     }
 
     private void initListener() {
@@ -90,6 +87,7 @@ public class HotFragment extends BaseFragment {
                         //     Log.e("TAG", response.toString());
                         processData(response);
                         lvHot.setAdapter(new HotAdapter(getContext(), movies));
+
                     }
                 });
         OkHttpUtils.get()
@@ -133,19 +131,6 @@ public class HotFragment extends BaseFragment {
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
     public class GlideImageLoader extends ImageLoader {
         @Override

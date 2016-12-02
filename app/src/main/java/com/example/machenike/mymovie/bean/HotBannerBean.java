@@ -1,11 +1,12 @@
 package com.example.machenike.mymovie.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Machenike on 2016/12/1.
  */
-public class HotBannerBean {
+public class HotBannerBean implements Serializable {
 
 
     /**

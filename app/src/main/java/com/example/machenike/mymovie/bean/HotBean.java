@@ -2,12 +2,13 @@ package com.example.machenike.mymovie.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Machenike on 2016/11/30.
  */
-public class HotBean {
+public class HotBean implements Serializable {
 
     /**
      * expires : 1800

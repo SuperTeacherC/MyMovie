@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tl="http://schemas.android.com/apk/res-auto"
     xmlns:t1="http://schemas.android.com/tools"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -13,11 +13,11 @@
 
         <TextView
             android:id="@+id/tv_city"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:drawableRight="@drawable/show_city"
+            android:gravity="center"
             android:text="北京 "
             android:textColor="@android:color/white"
             android:textSize="15sp" />
@@ -27,15 +27,16 @@
             android:layout_width="220dp"
             android:layout_height="30dp"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@id/tv_city"
             android:layout_marginTop="15dp"
-            tl:tl_bar_color="#ffffff"
-            tl:tl_indicator_color="#bb0000"
-            tl:tl_indicator_corner_radius="5dp"
-            tl:tl_tab_padding="23dp"
-            t1:tl_divider_width="0dp"
-            t1:tl_textSelectColor="#f00"
+            android:layout_toRightOf="@id/tv_city"
+            t1:tl_indicator_anim_duration="500"
             t1:tl_textUnselectColor="#fff"
+            tl:tl_bar_color="#b00"
+            tl:tl_indicator_color="#fff"
+            tl:tl_indicator_corner_radius="5dp"
+            tl:tl_indicator_style="NORMAL"
+            tl:tl_textSelectColor="@android:color/holo_red_dark"
+            tl:tl_divider_width="0dp"
             />
 
     </RelativeLayout>

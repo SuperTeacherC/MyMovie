@@ -1,11 +1,12 @@
 package com.example.machenike.mymovie.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Machenike on 2016/11/30.
  */
-public class SplashBean {
+public class SplashBean implements Serializable {
 
     /**
      * canSkip : false
