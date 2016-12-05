@@ -1,13 +1,19 @@
 package com.example.machenike.mymovie.fragment.moviefragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.machenike.mymovie.R;
 import com.example.machenike.mymovie.base.BaseFragment;
+import com.example.machenike.mymovie.citypicker.CityPickerActivity;
+import com.example.machenike.mymovie.fragment.moviefragment.find.FindFragment;
+import com.example.machenike.mymovie.fragment.moviefragment.hot.HotFragment;
+import com.example.machenike.mymovie.fragment.moviefragment.wait.WaitFragment;
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
@@ -22,6 +28,7 @@ import butterknife.Bind;
 public class MovieFragment extends BaseFragment {
 
 
+    private static final int CITY = 0;
     @Bind(R.id.tv_city)
     TextView tvCity;
     @Bind(R.id.tl_1)
@@ -67,7 +74,28 @@ public class MovieFragment extends BaseFragment {
             }
 
         });
+        initListener();
         viewpager.setCurrentItem(0);
+    }
+
+    private void initListener() {
+        tvCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CityPickerActivity.class);
+               startActivityForResult(intent,CITY);
+            }
+        });
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == CITY && resultCode == CityPickerActivity.RESULT_OK) {
+            String result = data.getStringExtra("picked_city");
+            tvCity.setText(result);
+        }
     }
 
     private void initFragment() {

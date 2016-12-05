@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="190dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/price_festivername"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:drawableRight="@drawable/triangle"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="欧洲电影奖"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:background="#eee" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="12-08"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:background="#eee" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_moview_pic"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/xiaofei" />
+
+        <TextView
+            android:id="@+id/tv_prize_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/iv_moview_pic"
+            android:layout_marginRight="1dp"
+            android:background="#3366cc"
+            android:text="最佳影片（提名）"
+            android:textColor="#fff"
+            android:textSize="8sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_movie_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="她" />
+</LinearLayout>

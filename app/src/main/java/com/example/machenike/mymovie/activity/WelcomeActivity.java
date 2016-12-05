@@ -80,7 +80,7 @@ public class WelcomeActivity extends Activity {
                         Gson gson = new Gson();
                         splashBean = gson.fromJson(response, SplashBean.class);
                         List<SplashBean.PostersBean> posters = splashBean.getPosters();
-                        pic = posters.get(0).getPic();
+                      //  pic = posters.get(0).getPic();
                         Log.e("TAG", "联网成功");
                         Glide.with(WelcomeActivity.this)
                                 .load(pic)
