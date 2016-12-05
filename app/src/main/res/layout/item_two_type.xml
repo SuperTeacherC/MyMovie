@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="205dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:text="12月16日" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/iv_movie"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/xiaofei" />
+
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@id/iv_movie"
+            android:layout_alignEnd="@id/iv_movie"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/o5" />
+
+        <ImageView
+            android:id="@+id/iv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:src="@drawable/xihuan_cang" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_two_name"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="名称"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="13243"
+            android:textColor="#55000000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="人想看"
+            android:textColor="#55000000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</LinearLayout>
