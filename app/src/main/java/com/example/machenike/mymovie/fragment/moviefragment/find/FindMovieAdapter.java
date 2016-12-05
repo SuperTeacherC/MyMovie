@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.machenike.mymovie.R;
-import com.example.machenike.mymovie.bean.FindTopBean;
 
 import java.util.List;
 
