@@ -9,8 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.machenike.mymovie.R;
+import com.example.machenike.mymovie.bean.FindTopBean;
 
 import java.util.List;
+
 
 /**
  * Created by Machenike on 2016/12/4.
@@ -21,7 +23,7 @@ public class FindMovieAdapter extends RecyclerView.Adapter {
     private static final int YEAR = 2;
     private static final int HOT = 3;
     private final Context mContext;
-    private  List<FindTopBean.DataBean> data;
+    private List<FindTopBean.DataBean> data;
 
     public  FindMovieAdapter(Context mContext, List<FindTopBean.DataBean> data) {
         this.mContext = mContext;

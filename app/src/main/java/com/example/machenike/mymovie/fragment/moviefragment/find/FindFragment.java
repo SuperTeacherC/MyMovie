@@ -14,6 +14,7 @@ import com.example.machenike.mymovie.R;
 import com.example.machenike.mymovie.base.BaseFragment;
 import com.example.machenike.mymovie.bean.FindBottomBean;
 import com.example.machenike.mymovie.bean.FindCenterBean;
+import com.example.machenike.mymovie.bean.FindTopBean;
 import com.example.machenike.mymovie.utils.Constant;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
