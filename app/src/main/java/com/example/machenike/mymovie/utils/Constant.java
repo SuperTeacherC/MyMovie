@@ -22,6 +22,9 @@ public class Constant {
             "dModel=SCH-I919U&uuid=D0CA57CF673B1DF3B9D10A36C085A74C20BCBE92125FF4A71984F289F2977D00&lat=39.906899375649395&lng=116.39723909965588&_" +
             "_reqTraceID=7614536813869825035&refer=%2FWelcome&__skck=6a375bce8c66a0dc293860dfa83833ef&__skts=1480592731666&__skua=32bcf146c756ecefe7" +
             "535b95816908e3&__skno=bb70c3de-9311-4f5b-a59a-f8d3445fb5e2&__skcy=WmXRJMlanS%2BjYQ%2F6AGYvLug9Y%2Fw%3D";
+
+    public static final String communityTop = "http://api.maoyan.com/sns/v2/buttons.json?utm_campaign=AmovieBmovieCD-1&movieBundleVersion=7601&utm_source=meizu&utm_medium=android&utm_term=7.6.0&utm_content=865479028905735&ci=1&net=255&dModel=MX4&uuid=F02F61DCB963FEAF421EF2B0673996706BABCBA6FA9412580E90681C52CB9B11&lat=40.10077&lng=116.378582&__reqTraceID=3549463187063305748&refer=%2FWelcome&__skck=6a375bce8c66a0dc293860dfa83833ef&__skts=1480832640407&__skua=32bcf146c756ecefe7535b95816908e3&__skno=f9b222bf-f57d-4c18-ac19-52c3bd199905&__skcy=rSQm2Bkrgr%2BJHs31LsskUzU0FT8%3D";
+
     //详情页api
     public static final String details = "http://m.maoyan.com/movie/";
     //购票页
@@ -40,4 +43,9 @@ public class Constant {
 
     public static final String findCenter = "http://api.maoyan.com/mmdb/movieboard/fixedboard/v1/hot/list.json?utm_campaign=AmovieBmovieCD-1&movieBundleVersion=7601&utm_source=meituan&utm_medium=android&utm_term=7.6.0&utm_content=000000000000000&ci=1&net=13&dModel=Android%20SDK%20built%20for%20x86_64&uuid=DD912D1B051F987F2712A1A48E82FD578BEA3ADF987122065B356025C2BF818F&refer=/Welcome";
     public static final String findBottom="http://api.maoyan.com/mmdb/movie/winning/film/2016-12-02/list.json?utm_campaign=AmovieBmovieCD-1&movieBundleVersion=7601&utm_source=meituan&utm_medium=android&utm_term=7.6.0&utm_content=000000000000000&ci=1&net=13&dModel=Android%20SDK%20built%20for%20x86_64&uuid=DD912D1B051F987F2712A1A48E82FD578BEA3ADF987122065B356025C2BF818F&refer=/Welcome";
-}
+
+
+
+
+
+  }

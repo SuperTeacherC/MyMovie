@@ -43,14 +43,11 @@
         android:layout_centerHorizontal="true"
         android:background="#fff"
         tl:tl_textAllCaps="true"
-        tl:tl_indicator_style="NORMAL"
         tl:tl_textsize="14sp"
         tl:tl_textSelectColor="#d00"
         tl:tl_textUnselectColor="#66000000"
-        tl:tl_underline_height="1dp"
         tl:tl_indicator_width="100dp"
         tl:tl_underline_color="#d00"
-        tl:tl_underline_gravity="TOP"
         tl:tl_tab_space_equal="true"
         />
     <android.support.v4.view.ViewPager

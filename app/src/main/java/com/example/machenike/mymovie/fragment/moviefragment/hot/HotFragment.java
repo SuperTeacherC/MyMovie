@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -35,10 +34,7 @@ import okhttp3.Call;
  * Created by Machenike on 2016/11/30.
  */
 public class HotFragment extends BaseFragment {
-    @Bind(R.id.tv_search)
-    TextView tvSearch;
-    @Bind(R.id.hot_search)
-    LinearLayout hotSearch;
+
     @Bind(R.id.lv_hot)
     ListView lvHot;
     @Bind(R.id.refresh)
@@ -49,21 +45,30 @@ public class HotFragment extends BaseFragment {
     public List<String> imagesUrl;
     private Banner banner;
     private int totalPager;
-
+    private LinearLayout hot_search;
     //默认第一页
-    private  int curPage =1;
+    private int curPage = 0;
+    private HotAdapter hotAdapter;
+
     @Override
     protected void initData() {
         View headview = View.inflate(getContext(), R.layout.hot_headview, null);
+        View searchView = View.inflate(getContext(), R.layout.hot_title_search, null);
         banner = (Banner) headview.findViewById(R.id.banner);
+        hot_search = (LinearLayout) searchView.findViewById(R.id.hot_search);
+
+        lvHot.addHeaderView(searchView);
         lvHot.addHeaderView(headview);
+
         getDataformNet();
-        initListener();
         materrefresh();
+        initListener();
     }
-    private boolean isLoadMore = true;
+
+     private boolean isLoadMore = true;
+
     private void materrefresh() {
-        refresh.setLoadMore(isLoadMore);
+         refresh.setLoadMore(isLoadMore);
         refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
@@ -83,9 +88,9 @@ public class HotFragment extends BaseFragment {
                     @Override
                     public void run() {
                         if (curPage < totalPager) {
-                            curPage += 1;
+                            curPage += 9;
                             OkHttpUtils.get()
-                                    .url(Constant.hotUlr + "&offset=" + curPage + "&limit=" + 12)
+                                    .url(Constant.hotUlr + "&offset=" + curPage + "&limit=10")
                                     .build()
                                     .execute(new StringCallback() {
                                         @Override
@@ -96,10 +101,8 @@ public class HotFragment extends BaseFragment {
                                         @Override
                                         public void onResponse(String response, int id) {
                                             //     Log.e("TAG", response.toString());
-                                            processData(response);
-                                            getBannerFromNet();
-                                            lvHot.setAdapter(new HotAdapter(getContext(), movies));
-
+                                                movies.addAll( processData1(response));
+                                            hotAdapter.notifyDataSetChanged();
                                         }
                                     });
                         } else {//没有更多页面
@@ -122,7 +125,7 @@ public class HotFragment extends BaseFragment {
             }
         });
 
-        hotSearch.setOnClickListener(new View.OnClickListener() {
+        hot_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "搜索页面", Toast.LENGTH_SHORT).show();
@@ -132,7 +135,7 @@ public class HotFragment extends BaseFragment {
 
     private void getDataformNet() {
         OkHttpUtils.get()
-                .url(Constant.hotUlr+"&offset="+curPage+"&limit="+12)
+                .url(Constant.hotUlr + "&offset=" + curPage + "&limit=10")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -145,12 +148,19 @@ public class HotFragment extends BaseFragment {
                         //     Log.e("TAG", response.toString());
                         processData(response);
                         getBannerFromNet();
-                        lvHot.setAdapter(new HotAdapter(getContext(), movies));
-
+                        hotAdapter = new HotAdapter(getContext(), movies);
+                        lvHot.setAdapter(hotAdapter);
                     }
                 });
     }
-    private void getBannerFromNet (){
+
+    private List<HotBean.DataBean.MoviesBean> processData1(String response) {
+        Gson gson = new Gson();
+        hotBean = gson.fromJson(response, HotBean.class);
+        return   hotBean.getData().getMovies();
+    }
+
+    private void getBannerFromNet() {
         OkHttpUtils.get()
                 .url(Constant.hotbanner)
                 .build()
@@ -175,12 +185,12 @@ public class HotFragment extends BaseFragment {
                     }
                 });
     }
+
     private void processData(String response) {
         Gson gson = new Gson();
         hotBean = gson.fromJson(response, HotBean.class);
-
         movies = hotBean.getData().getMovies();
-        totalPager =movies.size();
+        totalPager = movies.size();
     }
 
     @Override
@@ -191,6 +201,7 @@ public class HotFragment extends BaseFragment {
     @Override
     protected void initView() {
     }
+
 
     public class GlideImageLoader extends ImageLoader {
         @Override

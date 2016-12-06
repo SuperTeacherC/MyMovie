@@ -127,7 +127,7 @@ public class FindFragment extends BaseFragment {
                     public void onResponse(String response, int id) {
                         FindCenterBean findCenterBean = new Gson().fromJson(response, FindCenterBean.class);
                         List<FindCenterBean.DataBean> data = findCenterBean.getData();
-                        gridviewFindCenter.setAdapter(new GridViewAdapter(mContext, data));
+                        gridviewFindCenter.setAdapter(new GridViewAdapter(getContext(), data));
                     }
                 });
     }
