@@ -33,13 +33,19 @@ public class TwoTypeViewHolder extends RecyclerView.ViewHolder {
     TextView tvTwoName;
     TextView tvNumber;
     TextView tvTime;
+    TextView tv_sticky_header_view;
     private LinearLayout ll_two;
     private List<WaitCenterBean.DataBean.ComingBean> coming;
 
     public TwoTypeViewHolder(Context mContext, View inflate) {
         super(inflate);
         this.mContext = mContext;
+        inflate.setTag(View.VISIBLE);
+        inflate.setContentDescription("最近最受期待");
+
         ll_two = (LinearLayout) inflate.findViewById(R.id.ll_two);
+        tv_sticky_header_view = (TextView) inflate.findViewById(R.id.tv_sticky_header_view);
+        tv_sticky_header_view.setText("最近最受期待");
     }
 
     public void setData(final int position) {

@@ -1,12 +1,16 @@
 package com.example.machenike.mymovie.fragment.communityfragment;
 
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.example.machenike.mymovie.R;
 import com.example.machenike.mymovie.base.BaseFragment;
 import com.example.machenike.mymovie.bean.CommunityBean;
@@ -44,12 +48,18 @@ public class CommunityFragment extends BaseFragment {
     TextView tvCommunityPiao;
     @Bind(R.id.recyclerview)
     RecyclerView recyclerview;
+    @Bind(R.id.refresh)
+    MaterialRefreshLayout refresh;
     private List<CommunityBean.DataBean.FeedsBean> feeds;
+    int curpager=0;
+    private CommunityAdapter communityAdapter;
+    private boolean istrue;
 
     @Override
     protected void initData() {
         getTopFromNet();
         getDataFromNet();
+        getRefresh();
     }
 
     @Override
@@ -63,8 +73,9 @@ public class CommunityFragment extends BaseFragment {
     }
 
     public void getDataFromNet() {
+
         OkHttpUtils.get()
-                .url(Constant.community)
+                .url(Constant.community_start + curpager + Constant.community_end)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -82,8 +93,10 @@ public class CommunityFragment extends BaseFragment {
     private void processData(String response) {
         CommunityBean communityBean = new Gson().fromJson(response, CommunityBean.class);
         feeds = communityBean.getData().getFeeds();
-        recyclerview.setAdapter(new CommunityAdapter(mContext, feeds));
+        communityAdapter = new CommunityAdapter(mContext, feeds);
+        recyclerview.setAdapter(communityAdapter);
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+        istrue = communityBean.getData().getPaging().isHasMore();
 
     }
 
@@ -117,4 +130,57 @@ public class CommunityFragment extends BaseFragment {
                     }
                 });
     }
+
+
+    public void getRefresh() {
+        refresh.setLoadMore(true);
+        refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                getDataFromNet();
+                refresh.finishRefresh();
+            }
+
+            @Override
+            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
+                super.onRefreshLoadMore(materialRefreshLayout);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (istrue) {
+                            curpager += 10;
+                            OkHttpUtils.get()
+                                    .url(Constant.community_start + curpager + Constant.community_end)
+                                    .build()
+                                    .execute(new StringCallback() {
+                                        @Override
+                                        public void onError(Call call, Exception e, int id) {
+                                            Log.e("TAG", "联网失败" + e);
+                                        }
+
+                                        @Override
+                                        public void onResponse(String response, int id) {
+                                            //     Log.e("TAG", response.toString());
+                                            feeds.addAll(processDataMore(response));
+                                            communityAdapter.notifyDataSetChanged();
+
+                                        }
+                                    });
+                        } else {//没有更多页面
+                            Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();
+                        }
+                        refresh.finishRefresh();
+                    }
+                }, 2000);
+                refresh.finishRefreshLoadMore();
+            }
+        });
+    }
+
+    private List<CommunityBean.DataBean.FeedsBean> processDataMore(String response) {
+        Gson gson = new Gson();
+        CommunityBean communityBean = gson.fromJson(response, CommunityBean.class);
+        return   communityBean.getData().getFeeds();
+    }
+
 }

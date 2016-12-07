@@ -49,10 +49,24 @@
             android:layout_toLeftOf="@id/cinema_search"
             android:src="@drawable/select" />
     </RelativeLayout>
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+    <com.cjj.MaterialRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:overlay="false"
+        app:wave_height_type="higher"
+        app:wave_show="true">
 <ListView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/cinema_listview">
 </ListView>
+    </com.cjj.MaterialRefreshLayout>
+        <include layout="@layout/cinema_headviewshow"/>
+    </FrameLayout>
 </LinearLayout>

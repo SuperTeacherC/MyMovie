@@ -29,10 +29,14 @@ public class OneTypeViewHolder extends RecyclerView.ViewHolder {
 
     private LinearLayout llone;
     private List<WaitTopBean.DataBean> data;
+    TextView tvStickyHeader;
 
     public OneTypeViewHolder(Context mContext, View inflate) {
         super(inflate);
         this.mContext = mContext;
+        inflate.setTag(View.VISIBLE);
+        inflate.setContentDescription("预告片推荐");
+
 //        View view = View.inflate(mContext, R.layout.item_one_type, null);
 //        view = LayoutInflater.from(mContext).inflate(R.layout.item_one_type, (ViewGroup) inflate, false);
 //        ivMovie = (ImageView) view.findViewById(R.id.iv_movie);
@@ -41,6 +45,7 @@ public class OneTypeViewHolder extends RecyclerView.ViewHolder {
 //        tvName = (TextView) view.findViewById(R.id.tv_name);
 //        llone = (LinearLayout) inflate.findViewById(R.id.ll_one);
         llone = (LinearLayout) inflate.findViewById(R.id.ll_one);
+        tvStickyHeader = (TextView) inflate.findViewById(R.id.tv_sticky_header_view);
         Log.e("TAG","data1"+data);
 //      if(data !=null && data.size()>0) {
 //          Log.e("TAG","data2"+data);
@@ -76,7 +81,6 @@ public class OneTypeViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPlay;
         TextView tvDsc;
         TextView tvName;
-
         if(data !=null && data.size()>0) {
             Log.e("TAG","data2"+data);
             for (int i = 0;i<data.size();i++) {

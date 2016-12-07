@@ -1,17 +1,24 @@
 package com.example.machenike.mymovie.fragment.cinemafragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.example.machenike.mymovie.R;
 import com.example.machenike.mymovie.base.BaseFragment;
 import com.example.machenike.mymovie.bean.CinemaBean;
 import com.example.machenike.mymovie.bean.HotBannerBean;
+import com.example.machenike.mymovie.citypicker.CityPickerActivity;
 import com.example.machenike.mymovie.utils.Constant;
 import com.google.gson.Gson;
 import com.youth.banner.Banner;
@@ -29,27 +36,86 @@ import okhttp3.Call;
  * Created by Machenike on 2016/11/30.
  */
 public class CinemaFragment extends BaseFragment {
+
     @Bind(R.id.tv_city)
     TextView tvCity;
-    @Bind(R.id.cinema_select)
-    ImageView cinemaSelect;
     @Bind(R.id.cinema_search)
     ImageView cinemaSearch;
+    @Bind(R.id.cinema_select)
+    ImageView cinemaSelect;
+    @Bind(R.id.tv_hot_reply)
+    TextView tvHotReply;
+    @Bind(R.id.rl_titleShow)
+    RelativeLayout rlTitleShow;
     @Bind(R.id.cinema_listview)
     ListView cinemaListview;
+    @Bind(R.id.refresh)
+    MaterialRefreshLayout refresh;
     private CinemaBean cinemaBean;
     private CinemaBean.DataBean data;
     private List<CinemaBean.DataBean.东城区Bean> beans;
     private Banner banner;
     public List<String> imagesUrl;
+    private static final int CITY = 0;
     @Override
     protected void initData() {
-        View headbanner = View.inflate(mContext,R.layout.cinema_banner_headview,null);
-        View headView = View.inflate(mContext,R.layout.cinema_headview,null);
+        View headbanner = View.inflate(mContext, R.layout.cinema_banner_headview, null);
+        View headView = LayoutInflater.from(mContext).inflate(R.layout.cinema_headview, cinemaListview, false);
         banner = (Banner) headbanner.findViewById(R.id.banner);
         cinemaListview.addHeaderView(headbanner);
         cinemaListview.addHeaderView(headView);
         getDataFromNet();
+        getRefresh();
+        showTitle();
+        initListener();
+    }
+
+    private void initListener() {
+        tvCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getActivity(), CityPickerActivity.class);
+                startActivityForResult(intent,CITY);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==CITY && resultCode ==CityPickerActivity.RESULT_OK) {
+            String picked_city = data.getStringExtra("picked_city");
+            tvCity.setText(picked_city);
+        }
+    }
+
+    public  void showTitle(){
+        cinemaListview.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(firstVisibleItem >0) {
+                    rlTitleShow.setVisibility(View.VISIBLE);
+                }
+                else{
+                    rlTitleShow.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+    private void getRefresh() {
+        refresh.setLoadMore(false);
+        refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                getDataFromNet();
+                refresh.finishRefresh();
+            }
+        });
     }
 
     @Override
@@ -69,13 +135,14 @@ public class CinemaFragment extends BaseFragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Toast.makeText(mContext,"联网失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "联网失败", Toast.LENGTH_SHORT).show();
 
                     }
+
                     @Override
                     public void onResponse(String response, int id) {
                         cinemaBean = new Gson().fromJson(response, CinemaBean.class);
-                         beans = cinemaBean.getData().get东城区();
+                        beans = cinemaBean.getData().get东城区();
                         cinemaListview.setAdapter(new MyCinemaListViewAdapter(mContext, beans));
                     }
                 });
@@ -102,6 +169,7 @@ public class CinemaFragment extends BaseFragment {
                     }
                 });
     }
+
 
     public class GlideImageLoader extends ImageLoader {
         @Override

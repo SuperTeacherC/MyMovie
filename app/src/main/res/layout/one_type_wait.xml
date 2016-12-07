@@ -4,17 +4,13 @@
     android:layout_height="140dp"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#ccc"
-        android:gravity="center_vertical"
-        android:paddingLeft="8dp"
-        android:text="预告篇推荐" />
+    <include layout="@layout/layout_sticky_header_view"/>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
   <LinearLayout
       android:orientation="horizontal"
       android:id="@+id/ll_one"
@@ -23,4 +19,5 @@
 
   </LinearLayout>
     </HorizontalScrollView>
+
 </LinearLayout>

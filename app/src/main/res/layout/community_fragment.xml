@@ -3,6 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <com.cjj.MaterialRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:overlay="false"
+        app:wave_height_type="higher"
+        app:wave_show="true">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,4 +42,5 @@
 
         </LinearLayout>
     </ScrollView>
+    </com.cjj.MaterialRefreshLayout>
 </LinearLayout>

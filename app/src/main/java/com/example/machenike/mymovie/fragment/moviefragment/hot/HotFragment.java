@@ -88,7 +88,7 @@ public class HotFragment extends BaseFragment {
                     @Override
                     public void run() {
                         if (curPage < totalPager) {
-                            curPage += 9;
+                            curPage += 10;
                             OkHttpUtils.get()
                                     .url(Constant.hotUlr + "&offset=" + curPage + "&limit=10")
                                     .build()
@@ -101,7 +101,7 @@ public class HotFragment extends BaseFragment {
                                         @Override
                                         public void onResponse(String response, int id) {
                                             //     Log.e("TAG", response.toString());
-                                                movies.addAll( processData1(response));
+                                                movies.addAll( processDataMore(response));
                                             hotAdapter.notifyDataSetChanged();
                                         }
                                     });
@@ -154,7 +154,7 @@ public class HotFragment extends BaseFragment {
                 });
     }
 
-    private List<HotBean.DataBean.MoviesBean> processData1(String response) {
+    private List<HotBean.DataBean.MoviesBean> processDataMore(String response) {
         Gson gson = new Gson();
         hotBean = gson.fromJson(response, HotBean.class);
         return   hotBean.getData().getMovies();
@@ -169,7 +169,6 @@ public class HotFragment extends BaseFragment {
                     public void onError(Call call, Exception e, int id) {
 
                     }
-
                     @Override
                     public void onResponse(String response, int id) {
                         Gson gson = new Gson();

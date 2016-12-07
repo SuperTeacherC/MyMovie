@@ -80,7 +80,7 @@ public class HotAdapter extends BaseAdapter {
         holder.hot3d.setVisibility(moviesBean.isValue3d() ? View.VISIBLE : View.GONE);
         holder.tvHotReply.setVisibility(moviesBean.getPreSale() == 1 ? View.GONE : View.VISIBLE);
         holder.tvHotYushou.setVisibility(moviesBean.getPreSale() == 0 ? View.GONE : View.VISIBLE);
-        final int id = moviesBean.getId();
+        final int  id= moviesBean.getId();
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
