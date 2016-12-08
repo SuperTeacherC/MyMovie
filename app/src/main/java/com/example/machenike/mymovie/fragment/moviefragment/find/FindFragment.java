@@ -1,13 +1,16 @@
 package com.example.machenike.mymovie.fragment.moviefragment.find;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.machenike.mymovie.R;
@@ -15,6 +18,7 @@ import com.example.machenike.mymovie.base.BaseFragment;
 import com.example.machenike.mymovie.bean.FindBottomBean;
 import com.example.machenike.mymovie.bean.FindCenterBean;
 import com.example.machenike.mymovie.bean.FindTopBean;
+import com.example.machenike.mymovie.fragment.moviefragment.find.abroad.AbroadActivity;
 import com.example.machenike.mymovie.utils.Constant;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -51,6 +55,7 @@ public class FindFragment extends BaseFragment {
     protected void initData() {
         getTopDataFromNet();
 
+        getListener();
     }
 
     private void getTopDataFromNet() {
@@ -145,4 +150,26 @@ public class FindFragment extends BaseFragment {
         return R.layout.find_fragment;
     }
 
+    public void getListener() {
+        gridviewFindCenter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        Toast.makeText(mContext,"po"+position,Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(mContext,"po"+position,Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Intent intent  = new Intent(getActivity(), AbroadActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 3:
+                        Toast.makeText(mContext,"po"+position,Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
+    }
 }

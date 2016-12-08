@@ -4,9 +4,6 @@ import android.animation.ObjectAnimator;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -18,6 +15,11 @@ import android.widget.Toast;
 import com.example.machenike.mymovie.R;
 import com.example.machenike.mymovie.base.BaseFragment;
 import com.example.machenike.mymovie.utils.DensityUtil;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
 
 import butterknife.Bind;
 
@@ -60,7 +62,6 @@ public class AccountLoginFragment extends BaseFragment {
         ivEyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "eyes", Toast.LENGTH_SHORT).show();
                 if (flag) {
                     etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     ivEyes.setImageResource(R.drawable.psd_hide);
@@ -104,19 +105,53 @@ public class AccountLoginFragment extends BaseFragment {
                 flag1 = !flag1;
             }
         });
+        flXl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMShareAPI mShareAPI = UMShareAPI.get(getActivity());
+                mShareAPI.doOauthVerify(getActivity(), SHARE_MEDIA.SINA, umAuthListener);
+            }
+        });
+        flWx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMShareAPI mShareAPI = UMShareAPI.get(getActivity());
+                mShareAPI.doOauthVerify(getActivity(), SHARE_MEDIA.WEIXIN, umAuthListener);
+            }
+        });
+
+        flQq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMShareAPI mShareAPI = UMShareAPI.get(getActivity());
+                mShareAPI.doOauthVerify(getActivity(), SHARE_MEDIA.QQ, umAuthListener);
+            }
+        });
+        flQz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"哥哥应该是百度。没找到百度的图片，qq登录和空间登录有什么不一样吗？点前面一个不就行了吗，**",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void startDownAnimation() {
-        AnimationSet animationSet  = new AnimationSet(true);
-        TranslateAnimation translateAnimation = new TranslateAnimation( Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF,0.0f,
-                Animation.RELATIVE_TO_SELF,0.0f,Animation.RELATIVE_TO_SELF,1.5f);
-        translateAnimation.setFillAfter(true);
-        translateAnimation.start();
-        //将AlphaAnimation这个已经设置好的动画添加到 AnimationSet中
-        animationSet.addAnimation(translateAnimation);
-        //启动动画
-        llUpDown.startAnimation(animationSet);
-    }
+   private UMAuthListener umAuthListener = new UMAuthListener() {
+        @Override
+        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+            Toast.makeText(mContext, "Authorize succeed", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+            Toast.makeText( mContext, "Authorize fail", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+            Toast.makeText(mContext, "Authorize cancel", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     protected int getLayoutID() {

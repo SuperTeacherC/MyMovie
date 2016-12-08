@@ -1,6 +1,7 @@
 package com.example.machenike.mymovie.fragment.moviefragment.hot;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.example.machenike.mymovie.R;
+import com.example.machenike.mymovie.activity.SearchActivity;
 import com.example.machenike.mymovie.base.BaseFragment;
 import com.example.machenike.mymovie.bean.HotBannerBean;
 import com.example.machenike.mymovie.bean.HotBean;
@@ -128,9 +130,11 @@ public class HotFragment extends BaseFragment {
         hot_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "搜索页面", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
             }
         });
+
     }
 
     private void getDataformNet() {
