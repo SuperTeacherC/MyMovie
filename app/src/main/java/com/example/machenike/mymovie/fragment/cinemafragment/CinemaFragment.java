@@ -2,11 +2,15 @@ package com.example.machenike.mymovie.fragment.cinemafragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,13 +75,70 @@ public class CinemaFragment extends BaseFragment {
     }
 
     private void initListener() {
+
+        //城市选择
         tvCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent  = new Intent(getActivity(), CityPickerActivity.class);
-                startActivityForResult(intent,CITY);
+                Intent intent = new Intent(getActivity(), CityPickerActivity.class);
+                startActivityForResult(intent, CITY);
             }
         });
+
+        //影院选择
+        cinemaSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow(v);
+                Toast.makeText(mContext, "selector", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void showPopupWindow(View v) {
+        ListView lv1;
+        ListView lv2;
+        List<String> strs ;
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.pop_window, null);
+        lv1 = (ListView) contentView.findViewById(R.id.listview1);
+        lv2 = (ListView) contentView.findViewById(R.id.listview2);
+        strs= new ArrayList<>();
+        for (int i = 0;i<16;i++){
+
+            strs.add("item"+i);
+        }
+
+        ListviewAdapter adapter = new ListviewAdapter(mContext,strs);
+        lv1.setAdapter(adapter);
+        lv2.setAdapter(adapter);
+
+
+
+        PopupWindow popupWindow = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,true);
+        popupWindow.setTouchable(true);
+
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                Log.i("mengdd", "onTouch : ");
+
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+
+        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
+        // 我觉得这里是API的一个bug
+        popupWindow.setBackgroundDrawable(getResources().getDrawable(
+                R.drawable.cinema_bottom_tab_bg));
+
+        // 设置好参数之后再show
+        popupWindow.dismiss();
+        popupWindow.showAsDropDown(v);
+
     }
 
     @Override

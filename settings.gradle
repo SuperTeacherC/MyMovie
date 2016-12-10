@@ -1,1 +1,1 @@
-include ':app', ':okhttputils', ':FlycoTabLayout_Lib', ':banner'
+include ':app', ':okhttputils', ':FlycoTabLayout_Lib', ':banner', ':jcvideoplayer-lib'

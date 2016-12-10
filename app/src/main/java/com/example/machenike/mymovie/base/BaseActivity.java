@@ -16,9 +16,8 @@ public abstract class BaseActivity extends FragmentActivity
         
         setContentView(initLayout());
         ButterKnife.bind(this);
-
+        initListener();
         initData();
-
     }
 
     protected abstract void initListener();
@@ -27,5 +26,9 @@ public abstract class BaseActivity extends FragmentActivity
 
     protected abstract int initLayout();
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
 }

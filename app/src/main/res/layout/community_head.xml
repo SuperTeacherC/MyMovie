@@ -7,6 +7,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/ll_community_top"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginLeft="15dp"
@@ -35,6 +36,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_community_kuaixun"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_weight="1"
@@ -62,6 +64,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_community_shop"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_weight="1"
@@ -89,6 +92,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_community_piao"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginRight="15dp"

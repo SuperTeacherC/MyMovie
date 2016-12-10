@@ -1,6 +1,7 @@
 package com.example.machenike.mymovie.fragment.moviefragment.wait;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,29 +32,17 @@ public class OneTypeViewHolder extends RecyclerView.ViewHolder {
     private List<WaitTopBean.DataBean> data;
     TextView tvStickyHeader;
 
-    public OneTypeViewHolder(Context mContext, View inflate) {
+    public OneTypeViewHolder(final Context mContext, View inflate) {
         super(inflate);
         this.mContext = mContext;
         inflate.setTag(View.VISIBLE);
         inflate.setContentDescription("预告片推荐");
 
-//        View view = View.inflate(mContext, R.layout.item_one_type, null);
-//        view = LayoutInflater.from(mContext).inflate(R.layout.item_one_type, (ViewGroup) inflate, false);
-//        ivMovie = (ImageView) view.findViewById(R.id.iv_movie);
-//        tvDsc = (TextView) view.findViewById(R.id.tv_dsc);
-//        ivPlay= (ImageView) view.findViewById(R.id.iv_play);
-//        tvName = (TextView) view.findViewById(R.id.tv_name);
-//        llone = (LinearLayout) inflate.findViewById(R.id.ll_one);
+
         llone = (LinearLayout) inflate.findViewById(R.id.ll_one);
         tvStickyHeader = (TextView) inflate.findViewById(R.id.tv_sticky_header_view);
-        Log.e("TAG","data1"+data);
-//      if(data !=null && data.size()>0) {
-//          Log.e("TAG","data2"+data);
-//        for (int i = 0;i<data.size();i++) {
-//            Log.e("TAG","view"+view);
-//            llone.addView(view);
-//        }
-//      }
+        Log.e("TAG", "data1" + data);
+
     }
 
     public void setData(final int position) {
@@ -90,11 +79,28 @@ public class OneTypeViewHolder extends RecyclerView.ViewHolder {
                 ivPlay= (ImageView) view.findViewById(R.id.iv_play);
                 tvName = (TextView) view.findViewById(R.id.tv_name);
 
-                Log.e("TAG","view"+view);
+                Log.e("TAG", "view" + view);
                 Glide.with(mContext).load(data.get(i).getImg()).into(ivMovie);
                 tvDsc.setText(data.get(i).getName());
                 tvName.setText(data.get(i).getMovieName());
+
+
+                final String mp4 = data.get(i).getUrl();
+                final String title = data.get(i).getName();
+                final String image  = data.get(i).getImg();
                 llone.addView(view);
+
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, JCPlayActivity.class);
+                        intent.putExtra("MP4", mp4);
+                        intent.putExtra("TITLE", title);
+                        intent.putExtra("IMAGE", image);
+
+                        mContext.startActivity(intent);
+                    }
+                });
 
             }
         }

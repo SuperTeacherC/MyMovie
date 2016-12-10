@@ -1,10 +1,13 @@
 package com.example.machenike.mymovie.fragment.communityfragment;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ import com.example.machenike.mymovie.R;
 import com.example.machenike.mymovie.base.BaseFragment;
 import com.example.machenike.mymovie.bean.CommunityBean;
 import com.example.machenike.mymovie.bean.CommunityTopBean;
+import com.example.machenike.mymovie.fragment.communityfragment.mall.ShopActivity;
 import com.example.machenike.mymovie.utils.Constant;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -50,8 +54,16 @@ public class CommunityFragment extends BaseFragment {
     RecyclerView recyclerview;
     @Bind(R.id.refresh)
     MaterialRefreshLayout refresh;
+    @Bind(R.id.ll_community_top)
+    LinearLayout llCommunityTop;
+    @Bind(R.id.ll_community_kuaixun)
+    LinearLayout llCommunityKuaixun;
+    @Bind(R.id.ll_community_shop)
+    LinearLayout llCommunityShop;
+    @Bind(R.id.ll_community_piao)
+    LinearLayout llCommunityPiao;
     private List<CommunityBean.DataBean.FeedsBean> feeds;
-    int curpager=0;
+    int curpager = 0;
     private CommunityAdapter communityAdapter;
     private boolean istrue;
 
@@ -60,6 +72,17 @@ public class CommunityFragment extends BaseFragment {
         getTopFromNet();
         getDataFromNet();
         getRefresh();
+        initListener();
+    }
+
+    private void initListener() {
+        llCommunityShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ShopActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -180,7 +203,7 @@ public class CommunityFragment extends BaseFragment {
     private List<CommunityBean.DataBean.FeedsBean> processDataMore(String response) {
         Gson gson = new Gson();
         CommunityBean communityBean = gson.fromJson(response, CommunityBean.class);
-        return   communityBean.getData().getFeeds();
+        return communityBean.getData().getFeeds();
     }
 
 }

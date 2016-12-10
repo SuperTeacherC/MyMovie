@@ -91,7 +91,6 @@ public class FindFragment extends BaseFragment {
                     @Override
                     public void onResponse(String response, int id) {
                         FindBottomBean findBottomBean = new Gson().fromJson(response, FindBottomBean.class);
-                        Log.e("TAG", "0000000" + response);
                         List<FindBottomBean.DataBean> data = findBottomBean.getData();
 
                         if (data != null) {
@@ -171,5 +170,14 @@ public class FindFragment extends BaseFragment {
                 }
             }
         });
+        allPrize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext,AllPrizeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
